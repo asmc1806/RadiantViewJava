@@ -11,6 +11,7 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.FaceletContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,7 +42,9 @@ public class Login implements Serializable {
     
     public String iniciarSesion(){
         if (usuario.equals("admin") && contrasena.equals("Clave123")) {
-            return "inicio";
+            HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            sesion.setAttribute("usuario", usuario);
+            return "inicio.xhtml?faces-redirect=true";
         }else{
             FacesContext fc = FacesContext.getCurrentInstance();
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario y/o Contraseña  incorrectos", "MSG_INFO");
