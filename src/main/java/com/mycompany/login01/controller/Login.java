@@ -4,10 +4,13 @@
  */
 package com.mycompany.login01.controller;
 
+import com.mycompany.login01.entities.Usuario;
+import com.mycompany.login01.services.UsuarioFacadeLocal;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.FaceletContext;
@@ -23,7 +26,10 @@ public class Login implements Serializable {
 
     private String usuario;
     private String contrasena;
-
+    private Usuario usu = new Usuario();
+    @EJB
+    private UsuarioFacadeLocal ufl;
+            
     public String getUsuario() {
         return usuario;
     }
@@ -41,7 +47,8 @@ public class Login implements Serializable {
     }
     
     public String iniciarSesion(){
-        if (usuario.equals("admin") && contrasena.equals("Clave123")) {
+        this.usu = this.ufl.iniciarSesion(usuario, contrasena);
+        if (usu.getCorreoUsuario() != null) {
             HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             sesion.setAttribute("usuario", usuario);
             return "inicio.xhtml?faces-redirect=true";
