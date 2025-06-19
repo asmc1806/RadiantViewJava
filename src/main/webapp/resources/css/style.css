@@ -63,9 +63,6 @@
     2. import files
 -------------------------------------------------------------------*/
 
-@import url(animate.css);
-@import url(flaticon.css);
-@import url(font-awesome.min.css);
 
 /*------------------------------------------------------------------
     3. basic
@@ -343,7 +340,7 @@ a.btn {
 }
 
 button i {
-    color: #fff;
+    color: #000;
 }
 
 .lead {
@@ -793,7 +790,7 @@ a:focus {
     border: none;
     padding: 14px 26px 14px;
     font-size: 21px;
-    background: #0a679a;
+    background: #d3dde1;
     margin-right: 0;
     cursor: pointer;
     float: left;
@@ -893,7 +890,7 @@ span {
     box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.4);
     float: left;
     width: 100%;
-    background-image: url('../imagenes/layout_img/pattern_h.png');
+    background-image: url("#{resource['imagenes/layout_img/pattern_h.png']}");
     position: fixed;
     height: 100%;
     overflow: auto;

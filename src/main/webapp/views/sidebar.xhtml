@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <nav id="sidebar">
+        <div class="sidebar_blog_1">
+            <div class="sidebar-header">
+                <div class="logo_section">
+                    <h:graphicImage value="/resources/imagenes/logo/LogoAzul.svg" styleClass="logo_icon img-responsive" />
+                </div>
+            </div>
+
+            <div class="sidebar_user_info">
+                <div class="icon_setting"></div>
+                <div class="user_profle_side">
+                    <div class="user_img">
+                        <h:graphicImage value="/resources/imagenes/logo/LogoAmplioBlanco.svg" styleClass="img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar_blog_2">
+            <h4>Menú</h4>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <h:form>                       
+                        <a href="#{request.contextPath}/views/Usuarios/index.xhtml">
+                            <i class="fa fa-users"></i> Usuarios
+                        </a>
+                    </h:form>
+
+                    <ui:fragment rendered="Administrador">
+                        <h:form>
+                            <h:link outcome="/views/Usuarios/index.xhtml" value="Usuarioasassas" />
+                        </h:form>
+                    </ui:fragment>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</ui:composition>
+
