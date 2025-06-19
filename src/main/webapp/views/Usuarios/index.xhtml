@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition template="./../TemplateSitio.xhtml">
+            <ui:define name="content">
+                <h1>Listado de Usuarios.</h1>
+                <h:form><h:commandButton value="Crear Usuario" action="#{controllerUsuario.crearUsuarioP1()}"></h:commandButton></h:form>
+                <table id="t-all" class="jsf-data-table display nowrap" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                            <th>Edad</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{controllerUsuario.obtenerUsuarios()}" var="item">
+                            <tr>
+                                <td>#{item.nombresUsuario}</td>
+                                <td>#{item.apellidosUsuario}</td>
+                                <td>#{item.telefonoUsuario}</td>
+                                <td>#{item.direccionUsuario}</td>
+                                <td>#{item.edad}</td>
+                                <td>#{item.correoUsuario}</td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </ui:define>
+        </ui:composition>
+        <script>
+            $(document).ready(function () {
+                $('.t-all').DataTable({
+                    dom: 'Bfrtip',
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                    },
+                    "pageLength": 50,
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>
+    </body>
+</html>
