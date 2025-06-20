@@ -25,41 +25,32 @@
 </h:head>
 
 <h:body styleClass="dashboard dashboard_1">
+            <div id="top">
+                <ui:include src="topbar.xhtml"/>
+            </div>
 
-    <div id="top">
-        <ui:include src="topbar.xhtml"/>
-    </div>
+            <div>
+                <div id="left">
+                    <ui:include src="sidebar.xhtml"/>
+                </div>
 
-    <div>
-        <div id="left">
-            <ui:include src="sidebar.xhtml"/>
-        </div>
+                <div id="content" class="left_content">
+                    <ui:insert name="content"></ui:insert>
+                </div>
+            </div>
 
-        <div id="content" class="left_content">
-            <ui:insert name="content"></ui:insert>
-        </div>
-    </div>
-
-    <div id="bottom">
-        <ui:insert name="bottom"></ui:insert>
-    </div>
-
+            <div id="bottom">
+                <ui:include src="footer.xhtml"/>
+            </div>
     <!-- jQuery primero -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <!-- JS locales -->
     <h:outputScript library="js" name="bootstrap.min.js"/>
+    <h:outputScript library="js" name="bootstrap.min.js"/>
     <h:outputScript library="js" name="animate.js"/>
     <h:outputScript library="js" name="bootstrap-select.js"/>
-    <h:outputScript library="js" name="perfect-scrollbar.min.js"/>
     <h:outputScript library="js" name="custom.js"/>
-
-    <!-- Inicializar Perfect Scrollbar -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var ps = new PerfectScrollbar('#sidebar');
-      });
-    </script>
 
     <!-- DataTables JS externos -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

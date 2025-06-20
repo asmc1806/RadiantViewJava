@@ -6,9 +6,16 @@
     <body>
         <ui:composition template="./../TemplateSitio.xhtml">
             <ui:define name="content">
-                <h1>Listado de Usuarios.</h1>
-                <h:form><h:commandButton value="Crear Usuario" action="#{controllerUsuario.crearUsuarioP1()}"></h:commandButton></h:form>
-                <table id="t-all" class="jsf-data-table display nowrap" width="100%">
+                <div class="page_title">
+                    <h1>Listado de Usuarios.</h1>
+                </div>
+                <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                <h:form>
+                    <h:commandButton value="Crear Usuario" action="#{controllerUsuario.crearUsuarioP1()}" styleClass="main_bt"></h:commandButton>
+                </h:form>
+                <br></br><br></br>
+                <table id="t-all" class="jsf-data-table display nowrap" width="90%">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -17,6 +24,7 @@
                             <th>Direccion</th>
                             <th>Edad</th>
                             <th>Correo</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,25 +36,24 @@
                                 <td>#{item.direccionUsuario}</td>
                                 <td>#{item.edad}</td>
                                 <td>#{item.correoUsuario}</td>
+                                <td>
+                                    <h:form style="display:inline;">
+                                        <h:commandLink action="#{controllerUsuario.editarUsuario(item)}" title="Editar">
+                                            <i class="fa fa-edit" style="color:#007bff; margin-right:10px;"></i>
+                                        </h:commandLink>
+                                        <h:commandLink action="#{controllerUsuario.eliminarUsuario(item)}" title="Eliminar"
+                                            onclick="return confirm('¿Desea eliminar este usuario?');">
+                                            <i class="fa fa-trash" style="color:#dc3545;"></i>
+                                        </h:commandLink>
+                    </h:form>
+                                </td>
                             </tr>
                         </ui:repeat>
                     </tbody>
                 </table>
+                </div>
+                    </div>
             </ui:define>
         </ui:composition>
-        <script>
-            $(document).ready(function () {
-                $('.t-all').DataTable({
-                    dom: 'Bfrtip',
-                    "language": {
-                        "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-                    },
-                    "pageLength": 50,
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                });
-            });
-        </script>
     </body>
 </html>

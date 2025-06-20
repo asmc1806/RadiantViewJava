@@ -976,7 +976,7 @@ a[data-toggle="collapse"] {
     transition: ease all 0.3s;
     position: relative;
     padding: 60px 25px 25px 305px;
-    background: #f8f8f8;
+    background: #d3dde1;
 }
 
 .page_title {
@@ -1034,6 +1034,21 @@ a[data-toggle="collapse"] {
     -webkit-animation: online 2s infinite;
     /* Safari 4.0 - 8.0 */
     animation: online 2s infinite
+}
+
+.dt-button {
+    background: #0a679a;   /* Color fondo */
+    color: #fff;           /* Color texto */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.dt-button:hover {
+    background: #084e76;   /* Color hover */
 }
 
 
@@ -1100,7 +1115,7 @@ a[data-toggle="collapse"] {
 .logo_section img.logo_icon {
     margin: 0;
     text-align: center;
-    padding: 8px 8px;
+    padding: 4px 24px;
     height: 60px;
 }
 
