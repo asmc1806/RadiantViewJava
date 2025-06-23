@@ -16,7 +16,7 @@ $('#t-all').DataTable({
         {
             extend: 'copy',
             text: '<i class="fa fa-copy"></i> Copiar',
-            className: 'dt-button main_bt'
+            class: 'dt-button main_bt'
         },
         {
             extend: 'csv',
