@@ -16,8 +16,8 @@
                                 <h:form>
                                     <fieldset>
                                         <div class="field">
-                                            <h:outputLabel styleClass="label_field" value="ID Usuario:" for="IDUsuario" />
-                                            <h:inputText id="IDUsuario" value="#{controllerUsuario.usu.IDUsuario}" title="IDUsuario" required="true" requiredMessage="The IDUsuario field is required."/>
+                                            <h:outputLabel styleClass="label_field" value="ID Usuario:" for="IDUsuario" rendered="#{controllerUsuario.usu.IDUsuario == null}"/>
+                                            <h:inputText id="IDUsuario" value="#{controllerUsuario.usu.IDUsuario}" title="IDUsuario" required="true" requiredMessage="The IDUsuario field is required." rendered="#{controllerUsuario.usu.IDUsuario == null}"/>
                                             <h:message for="IDUsuario" style="color: red" />
                                         </div>
                                         <div class="field">
@@ -81,7 +81,10 @@
                                         </h:selectOneMenu>
                                         <h:message for="rolIDRol" style="color: red" />
                                         </div>
-                                        <h:commandButton value="Registrar Usuario" action="#{controllerUsuario.crearUsuarioP2()}" styleClass="main_bt"/>
+                                        <h:messages id="mensajes" globalOnly="true"/>
+                                        <h:commandButton value="Registrar Usuario" action="#{controllerUsuario.crearUsuarioP2()}" styleClass="main_bt" rendered="#{controllerUsuario.usu.IDUsuario == null}"/>
+                                        <h:commandButton value="Editar Usuario" action="#{controllerUsuario.editarUsuarioP2()}" styleClass="main_bt" rendered="#{controllerUsuario.usu.IDUsuario != null}"/>
+                                        <h:button value="Volver" styleClass="main_bt" outcome="/views/Usuarios/index.xhtml"/>
                                     </fieldset>
                                 </h:form>
                                 </div>

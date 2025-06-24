@@ -6,15 +6,14 @@ package com.mycompany.login01.controller;
 
 import com.mycompany.login01.entities.TipoRol;
 import com.mycompany.login01.entities.Usuario;
-import com.mycompany.login01.services.TipoRolFacade;
 import com.mycompany.login01.services.TipoRolFacadeLocal;
 import com.mycompany.login01.services.UsuarioFacadeLocal;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -24,7 +23,7 @@ import javax.faces.model.SelectItem;
  * @author cb00270
  */
 @Named(value = "controllerUsuario")
-@ViewScoped
+@SessionScoped
 public class controllerUsuario implements Serializable {
 
     Usuario usu = new Usuario();
@@ -88,6 +87,33 @@ public class controllerUsuario implements Serializable {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario registrado correctamente","MSG_INFO");
             fc.addMessage(null, fm);
             usu = new Usuario();
+        } catch (Exception e) {
+        }
+    }
+    
+    public String editarUsuarioP1(Usuario usu2){
+        this.usu = usu2;
+        this.tru.setIDTipoRol(usu.getRolIDRol());
+        return "/views/Usuarios/crearusuario.xhtml?faces-redirect?true";
+    }
+    
+    public void editarUsuarioP2(){
+        try {
+            this.usu.setRolIDRol(tru.getIDTipoRol());
+            this.ufl.edit(usu);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario editado correctamente","MSG_INFO");
+            fc.addMessage(null, fm);
+        } catch (Exception e) {
+        }
+    }
+    
+    public void eliminarUsuario(Usuario usu2){
+        try {
+            this.ufl.remove(usu2);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario eliminado correctamente","MSG_INFO");
+            fc.addMessage(null, fm);
         } catch (Exception e) {
         }
     }

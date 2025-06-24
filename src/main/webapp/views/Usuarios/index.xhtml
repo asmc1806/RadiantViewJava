@@ -11,6 +11,7 @@
                 </div>
                 <div class="col-md-12">
                 <div class="white_shd full margin_bottom_30">
+                    <h:messages id="mensajes" globalOnly="true" infoStyle="color: green"/>
                 <h:form>
                     <h:commandButton value="Crear Usuario" action="#{controllerUsuario.crearUsuarioP1()}" styleClass="main_bt"></h:commandButton>
                 </h:form>
@@ -38,14 +39,16 @@
                                 <td>#{item.correoUsuario}</td>
                                 <td>
                                     <h:form style="display:inline;">
-                                        <h:commandLink action="#{controllerUsuario.editarUsuario(item)}" title="Editar">
+                                        <h:commandLink action="#{controllerUsuario.editarUsuarioP1(item)}" title="Editar">
                                             <i class="fa fa-edit" style="color:#007bff; margin-right:10px;"></i>
                                         </h:commandLink>
+                                    </h:form>
+                                    <h:form style="display:inline;">
                                         <h:commandLink action="#{controllerUsuario.eliminarUsuario(item)}" title="Eliminar"
-                                            onclick="return confirm('¿Desea eliminar este usuario?');">
+                                                       onclick="return confirm('¿Desea eliminar este usuario?');">
                                             <i class="fa fa-trash" style="color:#dc3545;"></i>
                                         </h:commandLink>
-                    </h:form>
+                                    </h:form>
                                 </td>
                             </tr>
                         </ui:repeat>
