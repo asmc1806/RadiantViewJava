@@ -87,6 +87,7 @@ public class controllerUsuario implements Serializable {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario registrado correctamente","MSG_INFO");
             fc.addMessage(null, fm);
             usu = new Usuario();
+            tru = new TipoRol();
         } catch (Exception e) {
         }
     }

@@ -16,27 +16,32 @@ $('#t-all').DataTable({
         {
             extend: 'copy',
             text: '<i class="fa fa-copy"></i> Copiar',
-            className: 'dt-button main_bt'
+            className: 'dt-button main_bt',
+            exportOptions: { columns: ':not(.no-export)' }
         },
         {
             extend: 'csv',
             text: '<i class="fa fa-file-csv"></i> CSV',
-            className: 'dt-button main_bt'
+            className: 'dt-button main_bt',
+            exportOptions: { columns: ':not(.no-export)' }
         },
         {
             extend: 'excel',
             text: '<i class="fa fa-file-excel-o"></i> Excel',
-            className: 'dt-button main_bt'
+            className: 'dt-button main_bt',
+            exportOptions: { columns: ':not(.no-export)' }
         },
         {
             extend: 'pdf',
             text: '<i class="fa fa-file-pdf-o"></i> PDF',
-            className: 'dt-button main_bt'
+            className: 'dt-button main_bt',
+            exportOptions: { columns: ':not(.no-export)' }
         },
         {
             extend: 'print',
             text: '<i class="fa fa-print"></i> Imprimir',
-            className: 'dt-button main_bt'
+            className: 'dt-button main_bt',
+            exportOptions: { columns: ':not(.no-export)' }
         }
     ]
 });

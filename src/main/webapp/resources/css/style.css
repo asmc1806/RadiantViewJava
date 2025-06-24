@@ -340,7 +340,7 @@ a.btn {
 }
 
 button i {
-    color: #000;
+    color: #fff;
 }
 
 .lead {
@@ -1822,11 +1822,12 @@ a[data-toggle="collapse"] {
     color: #fff;
     padding: 10px 25px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 50px;
     border: none;
     transition: ease all 0.5s;
     cursor: pointer;
     font-weight: 300;
+    margin:10px 10px 10px 0px;
 }
 
 button.main_bt {
