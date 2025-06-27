@@ -5,6 +5,7 @@
 package com.mycompany.login01.controller;
 
 import com.mycompany.login01.entities.Usuario;
+import com.mycompany.login01.security.PasswordUtil;
 import com.mycompany.login01.services.UsuarioFacadeLocal;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import javax.inject.Named;

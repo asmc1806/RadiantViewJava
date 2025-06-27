@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByNombresUsuario", query = "SELECT u FROM Usuario u WHERE u.nombresUsuario = :nombresUsuario"),
     @NamedQuery(name = "Usuario.findByApellidosUsuario", query = "SELECT u FROM Usuario u WHERE u.apellidosUsuario = :apellidosUsuario"),
     @NamedQuery(name = "Usuario.findByTelefonoUsuario", query = "SELECT u FROM Usuario u WHERE u.telefonoUsuario = :telefonoUsuario"),
-    @NamedQuery(name = "Usuario.findByEdad", query = "SELECT u FROM Usuario u WHERE u.edad = :edad"),
+    @NamedQuery(name = "Usuario.findByEdad", query = "SELECT u FROM Usuario u WHERE u.edadUsuario = :edadUsuario"),
     @NamedQuery(name = "Usuario.findByCorreoUsuario", query = "SELECT u FROM Usuario u WHERE u.correoUsuario = :correoUsuario"),
     @NamedQuery(name = "Usuario.findByContrase\u00f1aUsuario", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1aUsuario = :contrase\u00f1aUsuario"),
     @NamedQuery(name = "Usuario.findByRolIDRol", query = "SELECT u FROM Usuario u WHERE u.rolIDRol = :rolIDRol")})
@@ -52,6 +52,10 @@ public class Usuario implements Serializable {
     private String tipoDocumento;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "Documento_Usuario")
+    private int documento;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 90)
     @Column(name = "Nombres_Usuario")
     private String nombresUsuario;
@@ -62,9 +66,8 @@ public class Usuario implements Serializable {
     private String apellidosUsuario;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "Telefono_Usuario")
-    private String telefonoUsuario;
+    private long telefonoUsuario;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -73,8 +76,8 @@ public class Usuario implements Serializable {
     private String direccionUsuario;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Edad")
-    private int edad;
+    @Column(name = "Edad_Usuario")
+    private int edadUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 120)
@@ -97,14 +100,15 @@ public class Usuario implements Serializable {
         this.iDUsuario = iDUsuario;
     }
 
-    public Usuario(Integer iDUsuario, String tipoDocumento, String nombresUsuario, String apellidosUsuario, String telefonoUsuario, String direccionUsuario, int edad, String correoUsuario, String contraseñaUsuario, int rolIDRol) {
+    public Usuario(Integer iDUsuario, String tipoDocumento, int documento, String nombresUsuario, String apellidosUsuario, long telefonoUsuario, String direccionUsuario, int edadUsuario, String correoUsuario, String contraseñaUsuario, int rolIDRol) {
         this.iDUsuario = iDUsuario;
         this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
         this.nombresUsuario = nombresUsuario;
         this.apellidosUsuario = apellidosUsuario;
         this.telefonoUsuario = telefonoUsuario;
         this.direccionUsuario = direccionUsuario;
-        this.edad = edad;
+        this.edadUsuario = edadUsuario;
         this.correoUsuario = correoUsuario;
         this.contraseñaUsuario = contraseñaUsuario;
         this.rolIDRol = rolIDRol;
@@ -125,6 +129,14 @@ public class Usuario implements Serializable {
     public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
+    
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
+    }
 
     public String getNombresUsuario() {
         return nombresUsuario;
@@ -142,11 +154,11 @@ public class Usuario implements Serializable {
         this.apellidosUsuario = apellidosUsuario;
     }
 
-    public String getTelefonoUsuario() {
+    public long getTelefonoUsuario() {
         return telefonoUsuario;
     }
 
-    public void setTelefonoUsuario(String telefonoUsuario) {
+    public void setTelefonoUsuario(long telefonoUsuario) {
         this.telefonoUsuario = telefonoUsuario;
     }
 
@@ -159,11 +171,11 @@ public class Usuario implements Serializable {
     }
 
     public int getEdad() {
-        return edad;
+        return edadUsuario;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEdad(int edadUsuario) {
+        this.edadUsuario = edadUsuario;
     }
 
     public String getCorreoUsuario() {
