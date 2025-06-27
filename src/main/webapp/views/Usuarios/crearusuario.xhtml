@@ -1,25 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <body class="inner_page login">
         <ui:composition template="./../TemplateSitio.xhtml">
             <ui:define name="content">
                 <f:view xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
                     <div class="page_title">
-                        <h1>Gestión de usuarios -> Crear/Editar usuarios.</h1>
+                        <h:panelGroup rendered="#{controllerUsuario.usu.IDUsuario == null}">
+                            <h1>Gestión de usuarios → Crear usuarios.</h1>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{controllerUsuario.usu.IDUsuario != null}">
+                            <h1>Gestión de usuarios → Editar usuarios.</h1>
+                        </h:panelGroup>
                     </div>
                     <div class="col-md-6">
                         <div class="white_shd full margin_bottom_30">
                             <div class="login_form">
                                 <div class="center">
                                 <h:form>
+                                    <h:messages id="mensajes" globalOnly="true"/><br></br>
                                     <fieldset>
-                                        <!--<div class="field">
-                                            <h:outputLabel styleClass="label_field" value="ID Usuario:" for="IDUsuario" rendered="#{controllerUsuario.usu.IDUsuario == null}"/>
-                                            <h:inputText id="IDUsuario" value="#{controllerUsuario.usu.IDUsuario}" title="IDUsuario" required="true" requiredMessage="The IDUsuario field is required." rendered="#{controllerUsuario.usu.IDUsuario == null}"/>
-                                            <h:message for="IDUsuario" style="color: red" />
-                                        </div>-->
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Tipo Documento:" for="tipoDocumento" />
                                         <h:selectOneMenu styleClass="styled_select" id="tipoDocumento" value="#{controllerUsuario.usu.tipoDocumento}" title="TipoDocumento" required="true" requiredMessage="El campo Tipo Documento es obligatorio.">
@@ -33,55 +34,70 @@
                                         <h:message for="tipoDocumento" style="color: red" />
                                         </div>
                                         <div class="field">
+                                        <h:outputLabel styleClass="label_field" value="Documento:" for="documento" />
+                                        <h:inputText id="documento" value="#{controllerUsuario.usu.documento}" title="Edad" required="true" requiredMessage="El campo Documento es obligatorio." validatorMessage="El número de documento debe contener de 1 a 10 dígitos sin puntos ni comas.">
+                                            <f:validateLongRange minimum="1" maximum="9999999999"/>
+                                        </h:inputText>
+                                        <h:message for="documento" style="color: red" />
+                                        </div>
+                                        <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Nombres:" for="nombresUsuario" />
-                                        <h:inputText id="nombresUsuario" value="#{controllerUsuario.usu.nombresUsuario}" title="NombresUsuario" required="true" requiredMessage="The NombresUsuario field is required."/>
+                                        <h:inputText id="nombresUsuario" value="#{controllerUsuario.usu.nombresUsuario}" title="NombresUsuario" required="true" requiredMessage="El campo Nombres es obligatorio."/>
                                         <h:message for="nombresUsuario" style="color: red" />
                                         </div>
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Apellidos:" for="apellidosUsuario" />
-                                        <h:inputText id="apellidosUsuario" value="#{controllerUsuario.usu.apellidosUsuario}" title="ApellidosUsuario" required="true" requiredMessage="The ApellidosUsuario field is required."/>
+                                        <h:inputText id="apellidosUsuario" value="#{controllerUsuario.usu.apellidosUsuario}" title="ApellidosUsuario" required="true" requiredMessage="El campo Apellidos es obligatorio."/>
                                         <h:message for="apellidosUsuario" style="color: red" />
                                         </div>
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Telefono:" for="telefonoUsuario" />
-                                        <h:inputText id="telefonoUsuario" value="#{controllerUsuario.usu.telefonoUsuario}" title="TelefonoUsuario" required="true" requiredMessage="El campo Tele.">
-                                            <f:validateRegex pattern="^\d{10}$" />
+                                        <h:inputText id="telefonoUsuario" value="#{controllerUsuario.usu.telefonoUsuario}" title="TelefonoUsuario" required="true" requiredMessage="El campo Telefono es obligatorio." validatorMessage="Ingrese un numero telefonico válido: 10 dígitos, celular (3xxxxxxxxx) o fijo (60Xxxxxxxx).">
+                                            <f:validateLongRange minimum="3000000000" maximum="6089999999"/>
                                         </h:inputText>
                                         <h:message for="telefonoUsuario" style="color: red" />
                                         </div>
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Dirección:" for="direccionUsuario" />
-                                        <h:inputText id="direccionUsuario" value="#{controllerUsuario.usu.direccionUsuario}" title="DireccionUsuario" required="true" requiredMessage="The DireccionUsuario field is required."/>
+                                        <h:inputText id="direccionUsuario" value="#{controllerUsuario.usu.direccionUsuario}" title="DireccionUsuario" required="true" requiredMessage="El campo Dirección es obligatorio."/>
                                         <h:message for="direccionUsuario" style="color: red" />
                                         </div>
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Edad:" for="edad" />
-                                        <h:inputText id="edad" value="#{controllerUsuario.usu.edad}" title="Edad" required="true" requiredMessage="The Edad field is required.">
+                                        <h:inputText id="edad" value="#{controllerUsuario.usu.edad}" title="Edad" required="true" requiredMessage="El campo Edad es obligatorio." validatorMessage="La Edad debe estar entre 1 y 120 años.">
                                             <f:validateLongRange minimum="1" maximum="120" />
                                         </h:inputText>
                                         <h:message for="edad" style="color: red" />
                                         </div>
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Correo:" for="correoUsuario" />
-                                        <h:inputText id="correoUsuario" value="#{controllerUsuario.usu.correoUsuario}" title="CorreoUsuario" required="true" requiredMessage="The Correo field is required.">
-                                            <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/>        
+                                        <h:inputText id="correoUsuario" value="#{controllerUsuario.usu.correoUsuario}" title="CorreoUsuario" required="true" requiredMessage="El campo Correo es obligatorio." validatorMessage="Por favor ingrese un correo válido (ejemplo@dominio.com).">
+                                            <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/>
                                         </h:inputText>
                                         <h:message for="correoUsuario" style="color: red" />
                                         </div>
                                         <div class="field">
-                                        <h:outputLabel styleClass="label_field" value="Contraseña:" for="contraseñaUsuario" />
-                                        <h:inputText id="contraseñaUsuario" value="#{controllerUsuario.usu.contraseñaUsuario}" title="ContraseñaUsuario" required="true" requiredMessage="The ContraseñaUsuario field is required."/>
-                                        <h:message for="contraseñaUsuario" style="color: red" />
+                                        <h:outputLabel styleClass="label_field" value="Contraseña:" for="contrasenaUsuario"/>
+                                        <h:inputSecret id="contrasenaUsuario" value="#{controllerUsuario.usu.contraseñaUsuario}" required="true" requiredMessage="El campo Contraseña es obligatorio." validatorMessage="La contraseña debe tener al menos 8 caracteres e incluir letras (al menos una Mayuscula), números y un carácter especial." redisplay="true">
+                                            <f:validateRegex pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?;])[A-Za-z\d@$!%*#?;]{8,}$"/>
+                                        </h:inputSecret>
+                                        <h:message for="contrasenaUsuario" style="color:red"/>
+                                        </div>
+                                        <div class="field">
+                                        <h:outputLabel styleClass="label_field" value="Confirmar Contraseña:" for="contrasenaUsuarioRep"/>
+                                        <h:inputSecret id="contrasenaUsuarioRep" value="#{controllerUsuario.usu.contraseñaUsuario}" required="true" requiredMessage="El campo Confirmar Contraseña es obligatorio." validatorMessage="La contraseña debe tener al menos 8 caracteres e incluir letras (al menos una Mayuscula), números y un carácter especial." redisplay="true">
+                                            <f:validateRegex pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?;])[A-Za-z\d@$!%*#?;]{8,}$"/>
+                                        </h:inputSecret>
+                                        <h:message for="contrasenaUsuarioRep" style="color:red"/>
                                         </div>
                                         <div class="field">
                                         <h:outputLabel styleClass="label_field" value="Rol:" for="rolIDRol" />
-                                        <h:selectOneMenu styleClass="styled_select" id="rolIDRol" value="#{controllerUsuario.tru.IDTipoRol}" title="RolIDRol" required="true" requiredMessage="The RolIDRol field is required.">
+                                        <h:selectOneMenu styleClass="styled_select" id="rolIDRol" value="#{controllerUsuario.tru.IDTipoRol}" title="RolIDRol" required="true" requiredMessage="El campo Rol es obligatorio.">
                                             <f:selectItem itemLabel="Seleccione..." itemValue="" noSelectionOption="true" />
                                             <f:selectItems value="#{controllerUsuario.listaTiporol()}"/>
                                         </h:selectOneMenu>
                                         <h:message for="rolIDRol" style="color: red" />
                                         </div>
-                                        <h:messages id="mensajes" globalOnly="true"/>
                                         <h:commandButton value="Registrar Usuario" action="#{controllerUsuario.crearUsuarioP2()}" styleClass="main_bt" rendered="#{controllerUsuario.usu.IDUsuario == null}"/>
                                         <h:commandButton value="Editar Usuario" action="#{controllerUsuario.editarUsuarioP2()}" styleClass="main_bt" rendered="#{controllerUsuario.usu.IDUsuario != null}"/>
                                         <h:button value="Volver" styleClass="main_bt" outcome="/views/Usuarios/index.xhtml"/>

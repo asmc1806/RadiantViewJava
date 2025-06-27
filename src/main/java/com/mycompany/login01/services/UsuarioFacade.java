@@ -5,6 +5,7 @@
 package com.mycompany.login01.services;
 
 import com.mycompany.login01.entities.Usuario;
+import com.mycompany.login01.security.PasswordUtil;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,11 +32,15 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public Usuario iniciarSesion(String usuario, String contrasena) {
-        Query query = em.createQuery("SELECT U FROM Usuario U WHERE U.correoUsuario=:usuario AND U.contraseñaUsuario=:contrasena");
-        query.setParameter("usuario", usuario);
-        query.setParameter("contrasena", contrasena);
+        Usuario usuarioValidar = new Usuario();
         try {
-            return (Usuario) query.getSingleResult();
+        Query query = em.createQuery("SELECT U FROM Usuario U WHERE U.correoUsuario=:usuario");
+        query.setParameter("usuario", usuario);
+        (usuarioValidar) = (Usuario) query.getSingleResult();
+        if (PasswordUtil.checkPassword(contrasena, usuarioValidar.getContraseñaUsuario())) {
+            return usuarioValidar;
+        }
+        return null;
         } catch (Exception e) {
             Usuario usuarioVacio = new Usuario();
             return usuarioVacio;

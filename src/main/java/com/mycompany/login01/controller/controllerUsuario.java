@@ -10,13 +10,16 @@ import com.mycompany.login01.services.TipoRolFacadeLocal;
 import com.mycompany.login01.services.UsuarioFacadeLocal;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -88,7 +91,21 @@ public class controllerUsuario implements Serializable {
             fc.addMessage(null, fm);
             usu = new Usuario();
             tru = new TipoRol();
-        } catch (Exception e) {
+        } catch (EJBException | PersistenceException ex) {
+            Throwable t = ex.getCause();
+            while (t != null && !(t instanceof SQLIntegrityConstraintViolationException)) {
+                t = t.getCause();
+            }
+
+            if (t instanceof SQLIntegrityConstraintViolationException) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                     "Ya existe un usuario con ese número de documento.", null));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                     "Error al registrar el usuario. Intente nuevamente.", null));
+            }
         }
     }
     
