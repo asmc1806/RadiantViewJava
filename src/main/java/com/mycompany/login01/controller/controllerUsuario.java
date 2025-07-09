@@ -30,13 +30,13 @@ import javax.persistence.PersistenceException;
 public class controllerUsuario implements Serializable {
 
     Usuario usu = new Usuario();
-    TipoRol tru =  new TipoRol();
+    TipoRol tru = new TipoRol();
     List<SelectItem> listaTipoRol;
     @EJB
     UsuarioFacadeLocal ufl;
     @EJB
     TipoRolFacadeLocal tfl;
-
+    
     public Usuario getUsu() {
         return usu;
     }
@@ -44,15 +44,15 @@ public class controllerUsuario implements Serializable {
     public void setUsu(Usuario usu) {
         this.usu = usu;
     }
-    
-    public List<Usuario> obtenerUsuarios(){
+
+    public List<Usuario> obtenerUsuarios() {
         try {
             return this.ufl.findAll();
         } catch (Exception e) {
         }
         return null;
     }
-    
+
     public controllerUsuario() {
     }
 
@@ -63,8 +63,8 @@ public class controllerUsuario implements Serializable {
     public void setTru(TipoRol tru) {
         this.tru = tru;
     }
-    
-    public List<SelectItem> listaTiporol(){
+
+    public List<SelectItem> listaTiporol() {
         listaTipoRol = new ArrayList<>();
         try {
             for (TipoRol tru : this.tfl.findAll()) {
@@ -76,18 +76,18 @@ public class controllerUsuario implements Serializable {
         }
         return null;
     }
-    
-    public String crearUsuarioP1(){
+
+    public String crearUsuarioP1() {
         usu = new Usuario();
         return "/views/Usuarios/crearusuario.xhtml?faces-redirect?true";
     }
-    
-    public void crearUsuarioP2(){
+
+    public void crearUsuarioP2() {
         usu.setRolIDRol(tru.getIDTipoRol());
         try {
             this.ufl.create(usu);
             FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario registrado correctamente","MSG_INFO");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario registrado correctamente", "MSG_INFO");
             fc.addMessage(null, fm);
             usu = new Usuario();
             tru = new TipoRol();
@@ -99,38 +99,39 @@ public class controllerUsuario implements Serializable {
 
             if (t instanceof SQLIntegrityConstraintViolationException) {
                 FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                     "Ya existe un usuario con ese número de documento.", null));
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Ya existe un usuario con ese número de documento.", null));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                     "Error al registrar el usuario. Intente nuevamente.", null));
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Error al registrar el usuario. Intente nuevamente.", null));
             }
         }
     }
-    
-    public String editarUsuarioP1(Usuario usu2){
+
+    public String editarUsuarioP1(Usuario usu2) {
         this.usu = usu2;
         this.tru.setIDTipoRol(usu.getRolIDRol());
         return "/views/Usuarios/crearusuario.xhtml?faces-redirect?true";
     }
-    
-    public void editarUsuarioP2(){
+
+    public void editarUsuarioP2() {
         try {
             this.usu.setRolIDRol(tru.getIDTipoRol());
             this.ufl.edit(usu);
             FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario editado correctamente","MSG_INFO");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario editado correctamente", "MSG_INFO");
             fc.addMessage(null, fm);
         } catch (Exception e) {
+            System.out.println("Erro: "+e);
         }
     }
-    
-    public void eliminarUsuario(Usuario usu2){
+
+    public void eliminarUsuario(Usuario usu2) {
         try {
             this.ufl.remove(usu2);
             FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario eliminado correctamente","MSG_INFO");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario eliminado correctamente", "MSG_INFO");
             fc.addMessage(null, fm);
         } catch (Exception e) {
         }

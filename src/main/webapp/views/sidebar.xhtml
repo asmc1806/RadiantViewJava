@@ -30,12 +30,20 @@
                             <i class="fa fa-users"></i> Gestión Usuarios
                         </a>
                     </h:form>
-
-                    <ui:fragment rendered="Administrador">
-                        <h:form>
-                            <h:link outcome="/views/Usuarios/index.xhtml" value="Usuarioasassas" />
-                        </h:form>
-                    </ui:fragment>
+                </li>
+                <li class="">
+                    <h:form>                       
+                        <a href="#{request.contextPath}/views/Insumos/index.xhtml">
+                            <i class="fa fa-archive"></i> Gestión Insumos
+                        </a>
+                    </h:form>
+                </li>
+                <li class="">
+                    <h:form>                       
+                        <a href="#{request.contextPath}/views/Examen/index.xhtml">
+                            <i class="fa fa-stethoscope"></i> Gestión Examen
+                        </a>
+                    </h:form>
                 </li>
             </ul>
         </div>

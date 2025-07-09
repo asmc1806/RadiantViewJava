@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../TemplateSitio.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <f:view xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+            <div class="page_title">
+                <h:panelGroup rendered="#{controllerInsumos.in.IDTipoInsumos == null}">
+                    <h1>Gestión de Insumos → Registrar insumo.</h1>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{controllerInsumos.in.IDTipoInsumos != null}">
+                    <h1>Gestión de Insumos → Modificar insumo.</h1>
+                </h:panelGroup>
+            </div>
+            <div class="col-md-8">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="login_form">
+                        <div class="center">
+                            <h:form>
+                                <h:messages id="mensajes" globalOnly="true"/><br></br>
+                                <fieldset>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Nombre:" for="nombreInsumos" />
+                                    <h:inputText id="nombreInsumos" value="#{controllerInsumos.in.nombreInsumos}" title="NombreInsumos" required="true" requiredMessage="El campo Nombre es obligatorio."/>
+                                    <h:message for="nombreInsumos" style="color: red" />
+                                    </div>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Categoria:" for="categoriaInsumos" />
+                                    <h:inputText id="categoriaInsumos" value="#{controllerInsumos.in.categoriaInsumos}" title="CategoriaInsumos" required="true" requiredMessage="El campo Categoria es obligatorio."/>
+                                    <h:message for="categoriaInsumos" style="color: red" />
+                                    </div>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Descripcion:" for="descripcionInsumos" />
+                                    <h:inputText id="descripcionInsumos" value="#{controllerInsumos.in.descripcionInsumos}" title="DescripcionInsumos" required="true" requiredMessage="El campo Descripcion es obligatorio."/>
+                                    <h:message for="descripcionInsumos" style="color: red" />
+                                    </div>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Medida:" for="medidaInsumos" />
+                                    <h:inputText id="medidaInsumos" value="#{controllerInsumos.in.medidaInsumos}" title="MedidaInsumos" required="true" requiredMessage="El campo Medida es obligatorio."/>
+                                    <h:message for="medidaInsumos" style="color: red" />
+                                    </div>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Stock Actual:" for="stockActualInsumos" />
+                                    <h:inputText id="stockActualInsumos" value="#{controllerInsumos.in.stockActualInsumos}" title="StockActualInsumos" required="true" requiredMessage="El campo Stock es obligatorio."/>
+                                    <h:message for="stockActualInsumos" style="color: red" />
+                                    </div>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Stock Minimo:" for="stockMinimoInsumos" />
+                                    <h:inputText id="stockMinimoInsumos" value="#{controllerInsumos.in.stockMinimoInsumos}" title="StockMinimoInsumos" required="true" requiredMessage="El campo Stock Minimo es obligatorio."/>
+                                    <h:message for="stockMinimoInsumos" style="color: red" />
+                                    </div>
+                                    <div class="field">
+                                    <h:outputLabel styleClass="label_field" value="Estado:" for="estadoInsumos" />
+                                    <h:selectOneMenu styleClass="styled_select" id="estadoInsumos" value="#{controllerInsumos.in.estadoInsumos}" title="estadoInsumos" required="true" requiredMessage="El campo Estado es obligatorio.">
+                                        <f:selectItem itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"/>
+                                        <f:selectItem itemLabel="Inactivo" itemValue="#{false}" /> 
+                                        <f:selectItem itemLabel="Activo" itemValue="#{true}" />
+                                    </h:selectOneMenu>
+                                    <h:message for="estadoInsumos" style="color: red" />
+                                    </div>
+                                    <h:commandButton value="Registrar Insumo" action="#{controllerInsumos.crearInsumoP2()}" styleClass="main_bt" rendered="#{controllerInsumos.in.IDTipoInsumos == null}"/>
+                                    <h:commandButton value="Modificar Insumo" action="#{controllerInsumos.editarInsumoP2()}" styleClass="main_bt" rendered="#{controllerInsumos.in.IDTipoInsumos != null}"/>
+                                    <h:button value="Volver" styleClass="main_bt" outcome="/views/Insumos/index.xhtml"/>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </f:view>
+    </ui:define>
+
+</ui:composition>

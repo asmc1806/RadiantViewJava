@@ -5,13 +5,13 @@
 package com.mycompany.login01.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,7 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TipoExamen.findAll", query = "SELECT t FROM TipoExamen t"),
     @NamedQuery(name = "TipoExamen.findByIDTipoExamen", query = "SELECT t FROM TipoExamen t WHERE t.iDTipoExamen = :iDTipoExamen"),
-    @NamedQuery(name = "TipoExamen.findByNombreExamen", query = "SELECT t FROM TipoExamen t WHERE t.nombreExamen = :nombreExamen")})
+    @NamedQuery(name = "TipoExamen.findByNombreExamen", query = "SELECT t FROM TipoExamen t WHERE t.nombreExamen = :nombreExamen"),
+    @NamedQuery(name = "TipoExamen.findByDescripcionExamen", query = "SELECT t FROM TipoExamen t WHERE t.descripcionExamen = :descripcionExamen"),
+    @NamedQuery(name = "TipoExamen.findByCostoExamen", query = "SELECT t FROM TipoExamen t WHERE t.costoExamen = :costoExamen")})
 public class TipoExamen implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,15 +42,19 @@ public class TipoExamen implements Serializable {
     private Integer iDTipoExamen;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
+    @Size(min = 1, max = 90)
     @Column(name = "Nombre_Examen")
     private String nombreExamen;
     @Basic(optional = false)
     @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
+    @Size(min = 1, max = 500)
     @Column(name = "Descripcion_Examen")
     private String descripcionExamen;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Costo_Examen")
+    private BigDecimal costoExamen;
 
     public TipoExamen() {
     }
@@ -57,10 +63,11 @@ public class TipoExamen implements Serializable {
         this.iDTipoExamen = iDTipoExamen;
     }
 
-    public TipoExamen(Integer iDTipoExamen, String nombreExamen, String descripcionExamen) {
+    public TipoExamen(Integer iDTipoExamen, String nombreExamen, String descripcionExamen, BigDecimal costoExamen) {
         this.iDTipoExamen = iDTipoExamen;
         this.nombreExamen = nombreExamen;
         this.descripcionExamen = descripcionExamen;
+        this.costoExamen = costoExamen;
     }
 
     public Integer getIDTipoExamen() {
@@ -85,6 +92,14 @@ public class TipoExamen implements Serializable {
 
     public void setDescripcionExamen(String descripcionExamen) {
         this.descripcionExamen = descripcionExamen;
+    }
+
+    public BigDecimal getCostoExamen() {
+        return costoExamen;
+    }
+
+    public void setCostoExamen(BigDecimal costoExamen) {
+        this.costoExamen = costoExamen;
     }
 
     @Override
