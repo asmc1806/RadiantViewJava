@@ -5,6 +5,7 @@
 package com.mycompany.login01.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +41,9 @@ public class UsuarioAccion implements Serializable {
     @JoinColumn(name = "Accion_ID_Accion", referencedColumnName = "ID_Accion")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TipoAccion accionIDAccion;
+    @JoinColumn(name = "Usuario_ID_Usuario", referencedColumnName = "ID_Tipo_Rol")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private TipoRol usuarioIDUsuario;
 
     public UsuarioAccion() {
     }
@@ -62,6 +66,14 @@ public class UsuarioAccion implements Serializable {
 
     public void setAccionIDAccion(TipoAccion accionIDAccion) {
         this.accionIDAccion = accionIDAccion;
+    }
+
+    public TipoRol getUsuarioIDUsuario() {
+        return usuarioIDUsuario;
+    }
+
+    public void setUsuarioIDUsuario(TipoRol usuarioIDUsuario) {
+        this.usuarioIDUsuario = usuarioIDUsuario;
     }
 
     @Override
@@ -87,6 +99,10 @@ public class UsuarioAccion implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.login01.entities.UsuarioAccion[ iDUsuarioAccion=" + iDUsuarioAccion + " ]";
+    }
+
+    public List<UsuarioAccion> Permisos(Usuario usu) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

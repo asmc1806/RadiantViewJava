@@ -4,7 +4,9 @@
  */
 package com.mycompany.login01.services;
 
+import com.mycompany.login01.entities.Usuario;
 import com.mycompany.login01.entities.UsuarioAccion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +28,16 @@ public class UsuarioAccionFacade extends AbstractFacade<UsuarioAccion> implement
 
     public UsuarioAccionFacade() {
         super(UsuarioAccion.class);
+    }
+
+    @Override
+    public List<UsuarioAccion> Permisos(Usuario usu) {
+        try {
+            return em.createQuery("SELECT ua FROM UsuarioAccion ua WHERE ua.usuarioIDUsuario.idUsuario = :idUsuario", UsuarioAccion.class).setParameter("idUsuario", usu.getIDUsuario()).getResultList();
+            
+        } catch (Exception e) {
+        }
+        return null;
     }
     
 }

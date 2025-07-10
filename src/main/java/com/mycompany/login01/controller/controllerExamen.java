@@ -55,7 +55,7 @@ public class controllerExamen implements Serializable {
         try {
             this.Efl.create(Tpe);
             FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo registrado correctamente","MSG_INFO");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Examen registrado correctamente","MSG_INFO");
             fc.addMessage(null, fm);
             Tpe = new TipoExamen();
         } catch (Exception ex) {
@@ -72,7 +72,7 @@ public class controllerExamen implements Serializable {
         try {
             this.Efl.edit(Tpe);
             FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo editado correctamente","MSG_INFO");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Examen editado correctamente","MSG_INFO");
             fc.addMessage(null, fm);
         } catch (Exception e) {
             System.out.println("Error:" +e);
@@ -83,7 +83,7 @@ public class controllerExamen implements Serializable {
         try {
             this.Efl.remove(Tpe);
             FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Insumo eliminado correctamente","MSG_INFO");
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Examen eliminado correctamente","MSG_INFO");
             fc.addMessage(null, fm);
         } catch (Exception e) {
         }

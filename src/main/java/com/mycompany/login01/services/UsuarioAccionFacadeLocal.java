@@ -4,6 +4,7 @@
  */
 package com.mycompany.login01.services;
 
+import com.mycompany.login01.entities.Usuario;
 import com.mycompany.login01.entities.UsuarioAccion;
 import java.util.List;
 import javax.ejb.Local;
@@ -28,5 +29,7 @@ public interface UsuarioAccionFacadeLocal {
     List<UsuarioAccion> findRange(int[] range);
 
     int count();
+    
+    List<UsuarioAccion> Permisos(Usuario usu);
     
 }

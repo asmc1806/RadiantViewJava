@@ -26,11 +26,6 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
-        <dependency>
-        <groupId>org.omnifaces</groupId>
-        <artifactId>omnifaces</artifactId>
-        <version>3.14.1</version> <!-- o la más reciente -->
-    </dependency>
     </dependencies>
 
     <build>
@@ -82,5 +77,5 @@
             </plugin>
         </plugins>
     </build>
-
+    
 </project>

@@ -24,20 +24,24 @@
                                 <h:messages id="mensajes" globalOnly="true"/><br></br>
                                 <fieldset>
                                     <div class="field">
-                                    <h:outputLabel styleClass="label_field" value="Nombre: " for="nombreExamen" />
-                                    <h:inputText id="nombreExamen" value="#{controllerExamen.tpe.nombreExamen}" title="nombreExamen" required="true" requiredMessage="El campo Nombre es obligatorio."/>
-                                    <h:message for="nombreExamen" style="color: red" />
+                                        <h:outputLabel styleClass="label_field" value="Nombre: " for="nombreExamen" />
+                                        <h:inputText id="nombreExamen" value="#{controllerExamen.tpe.nombreExamen}" title="nombreExamen" required="true" requiredMessage="El campo Nombre es obligatorio."/>
+                                        <h:message for="nombreExamen" style="color: red" />
                                     </div>
                                     <div class="field">
-                                    <h:outputLabel styleClass="label_field" value="Descripcion: " for="descripcionExamen" />
-                                    <h:inputText id="descripcionExamen" value="#{controllerExamen.tpe.descripcionExamen}" title="descripcionExamen" required="true" requiredMessage="El campo Descripcion es obligatorio."/>
-                                    <h:message for="descripcionExamen" style="color: red" />
+                                        <h:outputLabel styleClass="label_field" value="Descripcion: " for="descripcionExamen" />
+                                        <h:inputText id="descripcionExamen" value="#{controllerExamen.tpe.descripcionExamen}" title="descripcionExamen" required="true" requiredMessage="El campo Descripcion es obligatorio."/>
+                                        <h:message for="descripcionExamen" style="color: red" />
                                     </div>     
                                     <div class="field">
-                                    <h:outputLabel styleClass="label_field" value="Costo: " for="costoExamen" />
-                                    <h:inputText id="costoExamen" value="#{controllerExamen.tpe.costoExamen}" title="costoExamen" required="true" requiredMessage="El campo Costo es obligatorio."/>
-                                    <h:message for="costoExamen" style="color: red" />
+                                        <h:outputLabel styleClass="label_field" value="Costo: " for="costoExamen" />
+                                        <h:inputText id="costoExamen" value="#{controllerExamen.tpe.costoExamen}" title="costoExamen" required="true" requiredMessage="El campo Costo es obligatorio.">
+                                            <f:validateDoubleRange minimum="0.01" maximum="1000000"/>
+                                            <f:convertNumber type="number" maxFractionDigits="2" groupingUsed="false"/>
+                                        </h:inputText>
+                                        <h:message for="costoExamen" style="color: red" />
                                     </div>
+
                                     <h:commandButton value="Registrar Examen" action="#{controllerExamen.crearExamenP2()}" styleClass="main_bt" rendered="#{controllerExamen.tpe.IDTipoExamen == null}"/>
                                     <h:commandButton value="Modificar Examen" action="#{controllerExamen.editarExamenP2()}" styleClass="main_bt" rendered="#{controllerExamen.tpe.IDTipoExamen != null}"/>
                                     <h:button value="Volver" styleClass="main_bt" outcome="/views/Examen/index.xhtml"/>
